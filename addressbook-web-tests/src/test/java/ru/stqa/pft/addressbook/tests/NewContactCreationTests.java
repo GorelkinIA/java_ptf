@@ -9,6 +9,6 @@ public class NewContactCreationTests extends TestBase {
     app.gotoNewContactPage();
     app.fillContactForm(new ContactData("ivan", "gorelkin", "+79039034141", "gorelkinivan94@gmail.com"));
     app.submitContactForm();
-    app.gotoHomePage();
+    app.getNavigationHelper().gotoHomePage();
   }
 }
