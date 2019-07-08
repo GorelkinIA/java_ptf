@@ -8,11 +8,12 @@ import java.util.Comparator;
 import java.util.List;
 
 public class ContactCreationTests extends TestBase {
+
    @Test
   public void testNewContactCreation() throws Exception {
      app.goTo().homePage();
      List<ContactData> before = app.contact().list();
-     ContactData contact = new ContactData().withName("ivan").withFirstname("gorelkin");
+     ContactData contact = new ContactData().withName("ivan").withFirstname("gorelkin").withGroup("test1");
      app.contact().create(contact, true);
      List<ContactData> after = app.contact().list();
      Assert.assertEquals(after.size(), before.size() + 1);
