@@ -28,7 +28,7 @@ public class ContactCreationTests extends TestBase {
       while (line != null) {
          String[] split = line.split(";");
          list.add(new Object[]{new ContactData().withName(split[0]).withFirstname(split[1])
-                 .withMobileTelephone(split[2])});
+                 .withMobileTelephone(split[2]).withGroup(split[3])});
          line = reader.readLine();
       }
       return list.iterator();
