@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stqa.pft.addressbook.tests.ContactCreationTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-07-12T16:58:40" hostname="DESKTOP-NOB1303" time="17.704">
+  <properties/>
+  <testcase name="testNewContactCreation[0](ContactData{id='2147483647', name='name0', firstname='firstname0'})" classname="ru.stqa.pft.addressbook.tests.ContactCreationTests" time="10.766"/>
+  <testcase name="testNewContactCreation[1](ContactData{id='2147483647', name='name1', firstname='firstname1'})" classname="ru.stqa.pft.addressbook.tests.ContactCreationTests" time="6.938"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: http://%(server)s/dummy/blocklist//buckets/monitor/collections/changes/records?_expected=%221562889609522%22 is not a valid URL..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:201:13
+
+]]></system-err>
+</testsuite>
