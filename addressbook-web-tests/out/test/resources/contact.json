@@ -7,7 +7,8 @@
     "mail2": "xuystik0@mail.ru",
     "group": "test1",
     "homePhone": "77(83)40",
-    "Address": "15 Park, dom0"
+    "Address": "15 Park, dom0",
+    "photo": "src\\test\\resources\\Ferma.png"
   },
   {
     "name": "name1",
@@ -17,6 +18,7 @@
     "mail2": "xuystik1@mail.ru",
     "group": "test1",
     "homePhone": "77(83)41",
-    "Address": "15 Park, dom1"
+    "Address": "15 Park, dom1",
+    "photo": "src\\test\\resources\\Ferma.png"
   }
 ]

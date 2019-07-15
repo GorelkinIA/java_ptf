@@ -213,12 +213,15 @@ public class ContactData {
     ContactData that = (ContactData) o;
     return id == that.id &&
             Objects.equals(name, that.name) &&
-            Objects.equals(firstname, that.firstname);
+            Objects.equals(firstname, that.firstname) &&
+            Objects.equals(mobileTelephone, that.mobileTelephone) &&
+            Objects.equals(homePhone, that.homePhone) &&
+            Objects.equals(workPhone, that.workPhone);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, firstname);
+    return Objects.hash(id, name, firstname, mobileTelephone, homePhone, workPhone);
   }
 
   @Override
