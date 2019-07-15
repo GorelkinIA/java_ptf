@@ -30,7 +30,9 @@ public class ContactModificationTests extends TestBase {
     Contacts before = app.db().contacts();
     File photo = new File("src/test/resources/Ferma.png");
     ContactData modifiedContact = before.iterator().next();
-    ContactData contact = new ContactData().withId(modifiedContact.getId())
+    ContactData contact = new ContactData().withId(modifiedContact.getId()).withGroup(modifiedContact.getGroup())
+            .withAddress(modifiedContact.getAddress()).withMail2(modifiedContact.getMail2())
+            .withWorkPhone(modifiedContact.getWorkPhone()).withMail3(modifiedContact.getMail3())
             .withName("ivan").withFirstname("gorelkin").withMobileTelephone("+79039034141")
             .withMail("gorelkinivan94@gmail.com").withPhoto(photo);
     app.contact().modify(contact);
