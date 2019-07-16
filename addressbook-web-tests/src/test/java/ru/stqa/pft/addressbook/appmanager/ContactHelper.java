@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.HashSet;
 import java.util.List;
@@ -162,5 +163,50 @@ public class ContactHelper extends HelperBase {
     return new ContactData().withId(contact.getId()).withName(name).withFirstname(firstname).
             withHomePhone(home).withMobileTelephone(mobile).withWorkPhone(work).withMail(mail).withAddress(address)
             .withMail2(mail2).withMail3(mail3);
+  }
+
+  public void addToGroup(ContactData contact, GroupData addedGroup) {
+    selectContactById(contact.getId());
+    selectGroupToAdd(addedGroup);
+    pressAdd();
+    selectGoToGroupPage(addedGroup.getId());
+  }
+
+  public void selectGoToGroupPage(int id) {
+    wd.findElement(By.cssSelector("a[href='./?group=" + id + "']")).click();
+  }
+
+  public void pressAdd() {
+    wd.findElement(By.name("add")).click();
+  }
+
+  public void selectGroupToAdd(GroupData group) {
+    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(group.getName());
+  }
+
+  public void showAllContact() {
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText("[all]");
+  }
+
+  public void selectContact() {
+    wd.findElement(By.name("selected[]")).click();
+  }
+
+  public void removeContactFromGroup() {
+    showContactsInGroup();
+    selectContact();
+    RemoveContactFromGroup();
+    homePageAfterRemoveGroup();
+    showAllContact();
+  }
+  public void showContactsInGroup() {
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText("test1");
+  }
+
+  public void RemoveContactFromGroup() {
+    click(By.name("remove"));
+  }
+  public void homePageAfterRemoveGroup() {
+    wd.findElement(By.id("logo")).click();
   }
 }
