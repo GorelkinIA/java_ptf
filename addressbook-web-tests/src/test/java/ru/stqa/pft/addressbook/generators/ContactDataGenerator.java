@@ -24,6 +24,7 @@ public class ContactDataGenerator {
   public String file;
 
   @Parameter (names = "-d", description = "Data format")
+  //-f src/test/resources/contact.json -c 3 -d json
   public String format;
 
   public static void main(String[] args) throws IOException {
@@ -71,8 +72,9 @@ public class ContactDataGenerator {
   private void saveAsCsv(List<ContactData> contacts, File file) throws IOException {
     try (Writer writer = new FileWriter(file)) {
       for (ContactData contact : contacts) {
-        writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getName(), contact.getFirstname()
-                , contact.getMobileTelephone(), contact.getGroup(), contact.getHomePhone()
+        writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getName(), contact.getFirstname()
+                , contact.getMobileTelephone(), contact//.getGroup()
+                , contact.getHomePhone()
                 , contact.getAddress(), contact.getMail(), contact.getMail2()));
       }
     }
@@ -84,10 +86,10 @@ public class ContactDataGenerator {
     for (int i = 0; i < count; i++) {
       contacts.add(new ContactData().withName(String.format("name%s", i))
               .withFirstname(String.format("firstname%s", i))
-              .withMobileTelephone(String.format("77-834%s", i)).withGroup("test1")
+              .withMobileTelephone(String.format("77-834%s", i))//.withGroup("test1")
               .withHomePhone(String.format("77(83)4%s", i)).withAddress(String.format("15 Park, dom%s", i))
-              .withMail(String.format("pupsik%s@mail.ru", i)).withMail2(String.format("xuystik%s@mail.ru", i))
-              .withPhoto(new File("src/test/resources/Ferma.png")));
+              .withMail(String.format("pupsik%s@mail.ru", i)).withMail2(String.format("xuystik%s@mail.ru", i)));
+              //.withPhoto(new File("src/test/resources/Ferma.png")));
     }
     return contacts;
   }
