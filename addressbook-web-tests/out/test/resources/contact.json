@@ -8,40 +8,7 @@
     "mail3": "",
     "homePhone": "77(83)40",
     "workPhone": "",
-    "allPhones": "",
-    "allMail": "",
     "Address": "15 Park, dom0",
-    "photo": "",
-    "groups": []
-  },
-  {
-    "name": "name1",
-    "firstname": "firstname1",
-    "mobileTelephone": "77-8341",
-    "mail": "pupsik1@mail.ru",
-    "mail2": "xuystik1@mail.ru",
-    "mail3": "",
-    "homePhone": "77(83)41",
-    "workPhone": "",
-    "allPhones": "",
-    "allMail": "",
-    "Address": "15 Park, dom1",
-    "photo": "",
-    "groups": []
-  },
-  {
-    "name": "name2",
-    "firstname": "firstname2",
-    "mobileTelephone": "77-8342",
-    "mail": "pupsik2@mail.ru",
-    "mail2": "xuystik2@mail.ru",
-    "mail3": "",
-    "homePhone": "77(83)42",
-    "workPhone": "",
-    "allPhones": "",
-    "allMail": "",
-    "Address": "15 Park, dom2",
-    "photo": "",
-    "groups": []
+    "photo": "src\\test\\resources\\Ferma.png"
   }
 ]
