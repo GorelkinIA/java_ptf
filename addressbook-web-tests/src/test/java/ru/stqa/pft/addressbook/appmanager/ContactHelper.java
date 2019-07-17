@@ -9,9 +9,7 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -188,25 +186,21 @@ public class ContactHelper extends HelperBase {
     new Select(wd.findElement(By.name("group"))).selectByVisibleText("[all]");
   }
 
-  public void selectContact() {
-    wd.findElement(By.name("selected[]")).click();
+  public void confirmRemoveGroup(ContactData contactRemove) {
+    wd.findElement(By.tagName("h1")).getText().equals("Groups");
+    Assert.assertTrue(isElementPresent(By.linkText("group page \""
+            + contactRemove.getGroups().iterator().next().getName() +"\"")));
   }
 
-  public void removeContactFromGroup() {
-    showContactsInGroup();
-    selectContact();
-    RemoveContactFromGroup();
-    homePageAfterRemoveGroup();
-    showAllContact();
-  }
-  public void showContactsInGroup() {
-    new Select(wd.findElement(By.name("group"))).selectByVisibleText("test1");
+  public void contactGroupPage(ContactData contactRemove) {
+    Select select = new Select(wd.findElement(By.name("group")));
+    select.selectByVisibleText(contactRemove.getGroups().iterator().next().getName());
   }
 
-  public void RemoveContactFromGroup() {
+  public void removeFromGroup(ContactData contactRemove) {
+    Assert.assertEquals(contactRemove.getGroups().size(), 1);
+    selectContactById(contactRemove.getId());
     click(By.name("remove"));
-  }
-  public void homePageAfterRemoveGroup() {
-    wd.findElement(By.id("logo")).click();
+    confirmRemoveGroup(contactRemove);
   }
 }

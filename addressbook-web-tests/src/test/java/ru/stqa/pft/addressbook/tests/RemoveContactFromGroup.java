@@ -9,10 +9,13 @@ import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.File;
 
-import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class RemoveContactFromGroup extends TestBase{
+
+  private Contacts contacts;
+  private Groups groups;
 
   @BeforeClass
   public void ensurePreconditions() {
@@ -26,51 +29,29 @@ public class RemoveContactFromGroup extends TestBase{
       app.goTo().homePage();
       app.contact().create(new ContactData().withName("ivan")
               .withFirstname("Gorelkin").withPhoto(photo), true);
-      app.contact().selectContact();
-      app.contact().pressAdd();
-      app.goTo().homePageAfterAddedGroup();
-      app.contact().showAllContact();
     }
-    if (app.db().contactInGroup().size() == 0) {
+    ContactData contact = app.db().contacts().iterator().next();
+    if (contact.getGroups().size() == 0) {
+      GroupData group = app.db().groups().iterator().next();
       app.goTo().homePage();
-      app.contact().selectContact();
-      app.contact().pressAdd();
-      app.goTo().homePageAfterAddedGroup();
-      app.contact().showAllContact();
+      app.contact().addToGroup(contact, group);
     }
   }
 
   @Test
   public void testContactRemoveFromGroup() {
-    Groups groups = app.db().groups();
-    Contacts contacts = app.db().contacts();
-    ContactData contactRemoveFromGroup = contacts.iterator().next();
-    Groups beforeRemove = contactRemoveFromGroup.getGroups();
-    ContactData contact = new ContactData().withId(contactRemoveFromGroup.getId())
-            .withName(contactRemoveFromGroup.getName())
-            .withFirstname(contactRemoveFromGroup.getFirstname())
-            .withMobileTelephone(contactRemoveFromGroup.getMobileTelephone())
-            .withMail(contactRemoveFromGroup.getMail())
-            .withMail2(contactRemoveFromGroup.getMail2())
-            .withMail3(contactRemoveFromGroup.getMail3())
-            .withHomePhone(contactRemoveFromGroup.getHomePhone())
-            .withWorkPhone(contactRemoveFromGroup.getWorkPhone())
-            .withAddress(contactRemoveFromGroup.getAddress())
-            .inGroup(groups.iterator().next());
-
+    contacts = app.db().contacts();
+    groups = app.db().groups();
+    ContactData contactRemove = contacts.iterator().next();
+    GroupData groupRemove = groups.iterator().next();
     app.goTo().homePage();
-    app.contact().removeContactFromGroup();
-    app.goTo().homePage();
-    app.contact().showAllContact();
+    app.contact().contactGroupPage(contactRemove);
+    app.contact().removeFromGroup(contactRemove);
 
-    Contacts contactsAfter = app.db().contacts();
-    ContactData contactAfterRemoveFromGroup = contactsAfter.iterator().next();
-    Groups afterRemove = contactAfterRemoveFromGroup.getGroups();
-    assertThat(afterRemove.size(), equalTo(beforeRemove.size() - 1));
+    app.db().cycleByGroups(groupRemove);
+    app.db().cycleByContacts(contactRemove);
 
-    assertThat(app.contact().count(), equalTo(contacts.size()));
-    Contacts after = app.db().contacts();
-    assertThat(after, equalTo(contacts.without(contactRemoveFromGroup).withAdded(contact)));
-    verifyContactListInUI();
+    assertThat(contactRemove.getGroups(), not(contactRemove));
+    assertThat(groupRemove.getContacts(), not(groupRemove));
   }
 }
