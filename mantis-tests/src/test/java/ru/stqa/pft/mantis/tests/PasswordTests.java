@@ -42,13 +42,11 @@ public class PasswordTests extends TestBase {
     //увести в отдельный метод как переход на опр. вкладку. В данном случае- список пользователей
     app.getDriver().findElement(By.linkText("manage_users_link")).click();
 
-    long now = System.currentTimeMillis();
-
-    //выбираем случайный контакт
+    //выбираем контакт
     Set<ContactData> contacts = app.db().contacts();
     ContactData contact = contacts.iterator().next();
 
-    //выбор опр. пользователя. Надо реализовать через DB хелпер, чтобы в дальнейшем выбирался любой пользователь
+    //Кликаем на этот контакт
     app.getDriver().findElement(By.linkText(contact.getUsername())).click();
 
     // кликаем на изменить пароль
