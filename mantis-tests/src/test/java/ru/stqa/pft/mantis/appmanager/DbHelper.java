@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import ru.stqa.pft.mantis.model.Contact;
+import ru.stqa.pft.mantis.model.ContactData;
 
 import java.util.HashSet;
 import java.util.List;
@@ -25,10 +25,10 @@ public class DbHelper {
     sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
   }
 
-  public Set<Contact> contacts() {
+  public Set<ContactData> contacts() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    List<Contact> contacts = session.createQuery("from User where enabled = 1").list();
+    List<ContactData> contacts = session.createQuery("from ContactData where enabled = 1 and username <> 'administrator'").list();
     session.getTransaction().commit();
     session.close();
     return new HashSet<>(contacts);
