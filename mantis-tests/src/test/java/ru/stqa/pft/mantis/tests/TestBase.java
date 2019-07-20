@@ -39,8 +39,10 @@ public class TestBase {
     IssueData issue = mc.mc_issue_get("administrator", "root", BigInteger.valueOf(issueId));
     String issueStatus = issue.getStatus().getName();
     System.out.println(issueStatus);
-    //assertEquals(issueStatus, "closed");
-    throw new SkipException("Ignored because of issue " + issueId);
+    if (issueStatus.equals("closed")) {
+      return false;
+    }
+    return true;
   }
 
   public void skipIfNotFixed(int issueId) throws MalformedURLException, ServiceException, RemoteException {
