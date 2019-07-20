@@ -16,6 +16,9 @@ import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.Arrays;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+
 public class TestBase {
 
   protected static final ApplicationManager app
@@ -36,8 +39,8 @@ public class TestBase {
     IssueData issue = mc.mc_issue_get("administrator", "root", BigInteger.valueOf(issueId));
     String issueStatus = issue.getStatus().getName();
     System.out.println(issueStatus);
-    Assert.assertEquals(issueStatus, "closed");
-    return true;
+    //assertEquals(issueStatus, "closed");
+    throw new SkipException("Ignored because of issue " + issueId);
   }
 
   public void skipIfNotFixed(int issueId) throws MalformedURLException, ServiceException, RemoteException {

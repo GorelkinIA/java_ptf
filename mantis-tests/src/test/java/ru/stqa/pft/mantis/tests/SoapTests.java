@@ -20,8 +20,9 @@ import static org.testng.Assert.assertTrue;
 
 public class SoapTests extends TestBase{
 
-  @Test(enabled = false)
+  @Test
   public void testGetProjects() throws MalformedURLException, ServiceException, RemoteException {
+    skipIfNotFixed(1);
     Set<Project> projects = app.soap().getProjects();
     System.out.println(projects.size());
     for (Project project : projects) {
@@ -37,9 +38,9 @@ public class SoapTests extends TestBase{
     Issue created = app.soap().addIssue(issue);
     assertEquals(issue.getSummary(), created.getSummary());
   }
-  @Test
+  @Test(enabled = false)
   public void testIssueOpen() throws RemoteException, ServiceException, MalformedURLException {
-    isIssueOpen(1);
+    skipIfNotFixed(1);
   }
 
 }
