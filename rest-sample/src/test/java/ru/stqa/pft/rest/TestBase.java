@@ -32,6 +32,12 @@ public class TestBase {
     return parsed;
   }
 
+  //String json = getExecutor().execute(Request.Get("http://bugify.stqa.ru/api/issues/" + issueId + ".json"))
+  //        .returnContent().asString();
+  //JsonElement parsed = new JsonParser().parse(json);
+  //JsonElement issues = parsed.getAsJsonObject().get("issues");
+  //Set<Issue> singleElementSet = new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {}.getType());
+
   public void skipIfNotFixed(int issueId) throws IOException {
     if (isIssueOpen(issueId)) {
       throw new SkipException("Ignored because of issue " + issueId);
