@@ -17,6 +17,7 @@ import static org.testng.Assert.assertEquals;
 
 public class RestTests {
 
+
   @Test
   public void testCreateIssue() throws IOException {
     Set<Issue> oldIssues = getIssues();
